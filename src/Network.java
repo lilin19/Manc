@@ -10,11 +10,11 @@
 public class Network {
 	//variable of neurons
 	//layer1
-	public double a[][]= {{1,1,1,1,1,1,1,1},{0,1,1,1,1,1,1,1},{0,0,1,1,1,1,1,1},{0,0,0,1,1,1,1,1},{0,0,0,0,1,1,1,1},{0,0,0,0,0,1,1,1},{0,0,0,0,0,0,1,1},{0,0,0,0,0,0,0,1}};
-    public double h[]= {1,1,1,1,1,1,1,1};
+	public double a[][] = {{1,1,1,1,1,1,1,1},{0,1,1,1,1,1,1,1},{0,0,1,1,1,1,1,1},{0,0,0,1,1,1,1,1},{0,0,0,0,1,1,1,1},{0,0,0,0,0,1,1,1},{0,0,0,0,0,0,1,1},{0,0,0,0,0,0,0,1}};
+    public double h[] = {1,1,1,1,1,1,1,1};
     public double b[] = {1,1,1,1,1,1,1,1};
     //layer 2
-    public double k[][]= {{1,1,1,1,1,1,1,1},{0,1,1,1,1,1,1,1},{0,0,1,1,1,1,1,1},{0,0,0,1,1,1,1,1},{0,0,0,0,1,1,1,1},{0,0,0,0,0,1,1,1},{0,0,0,0,0,0,1,1},{0,0,0,0,0,0,0,1}};
+    public double k[][] = {{1,1,1,1,1,1,1,1},{0,1,1,1,1,1,1,1},{0,0,1,1,1,1,1,1},{0,0,0,1,1,1,1,1},{0,0,0,0,1,1,1,1},{0,0,0,0,0,1,1,1},{0,0,0,0,0,0,1,1},{0,0,0,0,0,0,0,1}};
     public double o[] = {1,1,1,1,1,1,1,1};
     public double p[] = {1,1,1,1,1,1,1,1};
     //layer diff
@@ -52,7 +52,6 @@ public class Network {
 		Neuron[] out = {new Hexlinear(), new Hexlinear(), new Hexlinear(), new Hexlinear()};
 		
 		//layer 4
-	
 		Neuron[] layer4 = {new Hexlinear()};
 		
 		
@@ -92,8 +91,6 @@ public class Network {
 		return diffout;
 	}
 	
-	
-	
 	//layer 2
 	public double[] layer2(double layer1[] ) {
 		double layer2[] = {0,0,0,0,0,0,0,0};
@@ -102,8 +99,6 @@ public class Network {
 		m[i].sumUp(layer1, k[i]);
 		layer2[i] = m[i].activate(o[i],p[i]);
 		}
-		
-
 		
 		return layer2;	
 }
@@ -120,10 +115,7 @@ public class Network {
 }
 	
 	
-	
 	//layer 3
-	
-	
 	public double[] layer3(double layer2[] ) {
 		double layer3[] = {0,0,0,0} ;
 

@@ -30,8 +30,6 @@ public class Core {
 	static double gradientdiffh[] = {1,1,1,1,1,1,1};
 	static double gradientdiffb[] = {1,1,1,1,1,1,1};
 	
-	
-	
     static double gradientdiff2a[][] = {{1,1,1,1,1,1,1},{1,1,1,1,1,1,1},{1,1,1,1,1,1,1}};
     static double gradientdiff2h[] = {1,1,1};
     static double gradientdiff2b[] = {1,1,1};
@@ -86,7 +84,7 @@ public class Core {
 		
 
 		//work cycle n=1000000 times
-		for(;t<100000;t=t+10) {
+		for(; t<10000000; t=t+10) {
 
 			
 			//work flow
@@ -111,85 +109,85 @@ public class Core {
 	static void changeParameter() {
 		
 		
-	       for(int p=0; p<8;p++) {
-		   		for(int i=0; i<8-p;i++) {
+	       for(int p=0; p<8; p++) {
+		   		for(int i=0; i<8-p; i++) {
 		   			net.a[p][p+i]=net.a[p][p+i]-gradient[p][p+i]*0.001;
 		   		}
 		      }
 	       
-	       for(int p=0; p<8;p++) {
-	   		for(int i=0; i<8;i++) {
-	   			net.k[p][i]=net.k[p][i]-gradientk[p][i]*0.001;
-	   		}
+	       for(int p=0; p<8; p++) {
+	   		    for(int i=0; i<8; i++) {
+	   			    net.k[p][i]=net.k[p][i]-gradientk[p][i]*0.001;
+	   		                           }
 	       }
 	       
-	   		for(int i=0; i<8;i++) {
+	   		for(int i=0; i<8; i++) {
 	   			net.h[i]=net.h[i]-gradienth[i]*0.001;
 	   		}
 	   		
-	   		for(int i=0; i<8;i++) {
+	   		for(int i=0; i<8; i++) {
 	   			net.b[i]=net.b[i]-gradientb[i]*0.001;
 	   		}
 	   		
-	   		for(int i=0; i<8;i++) {
+	   		for(int i=0; i<8; i++) {
 	   			net.o[i]=net.o[i]-gradiento[i]*0.001;
 	   		}
 	   		
-	   		for(int i=0; i<8;i++) {
+	   		for(int i=0; i<8; i++) {
 	   			net.p[i]=net.p[i]-gradientp[i]*0.001;
 	   		}
 	   		
-		       for(int p=0; p<7;p++) {
-			   		for(int i=0; i<7;i++) {
+		       for(int p=0; p<7; p++) {
+			   		for(int i=0; i<7; i++) {
 			   			net.diffa[p][i]=net.diffa[p][i]-gradientdiffa[p][i]*0.001;
 			   		}
 			       }
 			       
-			   		for(int i=0; i<7;i++) {
+			   		for(int i=0; i<7; i++) {
 			   			net.diffb[i]=net.h[i]-gradientdiffb[i]*0.001;
 			   		}
 			   		
-			   		for(int i=0; i<7;i++) {
+			   		for(int i=0; i<7; i++) {
 			   			net.diffh[i]=net.diffh[i]-gradientdiffh[i]*0.001;
 			   		}
 			   		
-				       for(int p=0; p<3;p++) {
-					   		for(int i=0; i<7;i++) {
+				       for(int p=0; p<3; p++) {
+					   		for(int i=0; i<7; i++) {
 					   			net.diff2a[p][i]=net.diff2a[p][i]-gradientdiff2a[p][i]*0.001;
 					   		}
 					       }
 					       
-					   		for(int i=0; i<3;i++) {
+					   		for(int i=0; i<3; i++) {
 					   			net.diff2b[i]=net.h[i]-gradientdiff2b[i]*0.001;
 					   		}
 					   		
-					   		for(int i=0; i<3;i++) {
+					   		for(int i=0; i<3; i++) {
 					   			net.diff2h[i]=net.diffh[i]-gradientdiff2h[i]*0.001;
 					   		}
 					   		
-						       for(int p=0; p<4;p++) {
-							   		for(int i=0; i<10;i++) {
+						       for(int p=0; p<4; p++) {
+							   		for(int i=0; i<10; i++) {
 							   			net.outa[p][i]=net.outa[p][i]-gradientouta[p][i]*0.001;
 							   		}
 							       }
 							       
-							   		for(int i=0; i<3;i++) {
+							   		for(int i=0; i<3; i++) {
 							   			net.outb[i]=net.h[i]-gradientoutb[i]*0.001;
 							   		}
 							   		
-							   		for(int i=0; i<3;i++) {
+							   		for(int i=0; i<3; i++) {
 							   			net.outk[i]=net.outk[i]-gradientoutk[i]*0.001;
 							   		}
 							   		
 							   		
 							   		
-							   		for(int i=0; i<4;i++) {
+							   		for(int i=0; i<4; i++) {
 							   			net.layer4a[i]=net.layer4a[i]-gradientlayer4a[i]*0.001;
 							   		}
 			   		
 
-	   			net.layer4k=net.layer4k-gradientlayer4k*0.001;
-	   			net.layer4b=net.layer4b-gradientlayer4b*0.001;
+	   			net.layer4k = net.layer4k-gradientlayer4k*0.001;
+	   			net.layer4b = net.layer4b-gradientlayer4b*0.001;
 	   		
 	}
 	
@@ -201,8 +199,8 @@ public class Core {
 		//gradient decent
 	       
 	       //layer1
-	       for(int p=0; p<8;p++) {
-	   		for(int i=0; i<8-p;i++) {
+	       for(int p=0; p<8; p++) {
+	   		for(int i=0; i<8-p; i++) {
 		   		double temp = gd.objectfunction(predict(), s1[7]);
 		   		net.a[p][p+i]=net.a[p][p+i]+0.001;
 		   		double dedicate = gd.objectfunction(predict(), s1[7]);
@@ -211,7 +209,7 @@ public class Core {
 	   		}
 	      }
 	       
-	   		for(int i=0; i<8;i++) {
+	   		for(int i=0; i<8; i++) {
 		   		double temp = gd.objectfunction(predict(), s1[7]);
 		   		net.h[i]=net.h[i]+0.001;
 		   		double dedicate = gd.objectfunction(predict(), s1[7]);
@@ -219,7 +217,7 @@ public class Core {
 		   		net.h[i]=net.h[i]-0.001;
 	   		}
 	   		
-	   		for(int i=0; i<8;i++) {
+	   		for(int i=0; i<8; i++) {
 		   		double temp = gd.objectfunction(predict(), s1[7]);
 		   		net.b[i]=net.b[i]+0.001;
 		   		double dedicate = gd.objectfunction(predict(), s1[7]);
@@ -230,17 +228,17 @@ public class Core {
 
 	       //diff
 	       for(int p=0; p<7; p++) {
-	   		for(int i=0; i<7;i++) {
-		   		double temp = gd.objectfunction(predict(), s1[7]);
-		   		net.diffa[p][i]=net.diffa[p][i]+0.001;
-		   		double dedicate = gd.objectfunction(predict(), s1[7]);
-		   		gradientdiffa[p][i] = (dedicate - temp)/0.001;
-		   		net.diffa[p][i]=net.diffa[p][i]-0.001;
+	    	   for(int i=0; i<7; i++) {
+	    		   double temp = gd.objectfunction(predict(), s1[7]);
+	    		   net.diffa[p][i]=net.diffa[p][i]+0.001;
+		   			double dedicate = gd.objectfunction(predict(), s1[7]);
+		   			gradientdiffa[p][i] = (dedicate - temp)/0.001;
+		   			net.diffa[p][i]=net.diffa[p][i]-0.001;
 	   		}
 	       }
 	       
 
-	   		for(int i=0; i<7;i++) {
+	   		for(int i=0; i<7; i++) {
 		   		double temp = gd.objectfunction(predict(), s1[7]);
 		   		net.diffh[i]=net.diffh[i]+0.001;
 		   		double dedicate = gd.objectfunction(predict(), s1[7]);
@@ -248,30 +246,23 @@ public class Core {
 		   		net.diffh[i]=net.diffh[i]-0.001;
 	       }
 	       
-	   		for(int i=0; i<7;i++) {
+	   		for(int i=0; i<7; i++) {
 		   		double temp = gd.objectfunction(predict(), s1[7]);
 		   		net.diffb[i]=net.diffb[i]+0.001;
 		   		double dedicate = gd.objectfunction(predict(), s1[7]);
 		   		gradientdiffb[i] = (dedicate - temp)/0.001;
 		   		net.diffb[i]=net.diffb[i]-0.001;
 	       }
-	       
-	       
-	       
-	       
-	       
-	       
-	       
-	       
+	   	
 	       
 	       //layer2
 	       for(int p=0; p<8; p++) {
-	   		for(int i=0; i<8;i++) {
-		   		double temp = gd.objectfunction(predict(), s1[7]);
-		   		net.k[p][i]=net.k[p][i]+0.001;
-		   		double dedicate = gd.objectfunction(predict(), s1[7]);
-		   		gradientk[p][i] = (dedicate - temp)/0.001;
-		   		net.k[p][i]=net.k[p][i]-0.001;
+	   		   for(int i=0; i<8;i++) {
+		   	     	double temp = gd.objectfunction(predict(), s1[7]);
+		   	     	net.k[p][i]=net.k[p][i]+0.001;
+		   	     	double dedicate = gd.objectfunction(predict(), s1[7]);
+		   	     	gradientk[p][i] = (dedicate - temp)/0.001;
+		   	     	net.k[p][i]=net.k[p][i]-0.001;
 	   		}
 	       }
 	   		
@@ -297,12 +288,12 @@ public class Core {
 
 		       //diff2
 		       for(int p=0; p<3; p++) {
-		   		for(int i=0; i<7;i++) {
-			   		double temp = gd.objectfunction(predict(), s1[7]);
-			   		net.diff2a[p][i]=net.diff2a[p][i]+0.001;
-			   		double dedicate = gd.objectfunction(predict(), s1[7]);
-			   		gradientdiff2a[p][i] = (dedicate - temp)/0.001;
-			   		net.diff2a[p][i]=net.diff2a[p][i]-0.001;
+		    	   for(int i=0; i<7;i++) {
+		    		   double temp = gd.objectfunction(predict(), s1[7]);
+		    		   net.diff2a[p][i]=net.diff2a[p][i]+0.001;
+		    		   double dedicate = gd.objectfunction(predict(), s1[7]);
+			   			gradientdiff2a[p][i] = (dedicate - temp)/0.001;
+			   			net.diff2a[p][i]=net.diff2a[p][i]-0.001;
 		   		}
 		       }
 		       
