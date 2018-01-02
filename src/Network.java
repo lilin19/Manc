@@ -96,8 +96,8 @@ public class Network {
 		double layer2[] = {0,0,0,0,0,0,0,0};
 
 		for(int i=0; i<8; i++) {
-		m[i].sumUp(layer1, k[i]);
-		layer2[i] = m[i].activate(o[i],p[i]);
+			m[i].sumUp(layer1, k[i]);
+			layer2[i] = m[i].activate(o[i],p[i]);
 		}
 		
 		return layer2;	
@@ -107,8 +107,8 @@ public class Network {
 		double layer2[] = {0,0,0};
 
 		for(int i=0; i<3; i++) {
-		diff2[i].sumUp(layer1, diff2a[i]);
-		layer2[i] = m[i].activate(diff2b[i],diff2h[i]);
+			diff2[i].sumUp(layer1, diff2a[i]);
+			layer2[i] = m[i].activate(diff2b[i],diff2h[i]);
 		}
 		
 		return layer2;	
@@ -120,8 +120,8 @@ public class Network {
 		double layer3[] = {0,0,0,0} ;
 
 		for(int i=0; i<4; i++) {
-		out[i].sumUp(layer2, outa[i]);
-		layer3[i] = m[i].activate(outk[i],outb[i]);
+			out[i].sumUp(layer2, outa[i]);
+			layer3[i] = m[i].activate(outk[i],outb[i]);
 		}
 		
 		return layer3;	
