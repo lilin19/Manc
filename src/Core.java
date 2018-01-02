@@ -10,7 +10,7 @@ public class Core {
 	//the 8 real positions array
 	static double[] s1 = {0,0,0,0,0,0,0,0};
 	//time
-	static double t=0;
+	static double t = 0;
 	//step
 	static double step = 2;
 	//Neuron Network
@@ -62,7 +62,7 @@ public class Core {
 		 //learning work flow
 		for(; t<100000; t=t+step) {
 			iterate();
-			gd.getGradient(net, gd.objectfunction(Core.predict(), Prior.getX(Core.t + Core.step)));
+			gd.getGradient(net);
 			gd.changeParameter(net);
 
 			//print the position array
@@ -74,10 +74,10 @@ public class Core {
 
 		
 		//verification work flow
-		for(t = 1.67886; t<500; t=t+2) {
+		for(t = 1.67886; t<500; t=t+step) {
 			iterate();
 			//print the position array
-		   System.out.println("the position2: " + s1[0]+" "+s1[1]+" "+s1[2]+" "+s1[3]+" "+s1[4]+" "+s1[5]+" "+s1[6]+" "+s1[7]+" "+Prior.getX(t+step));
+		  // System.out.println("the position2: " + s1[0]+" "+s1[1]+" "+s1[2]+" "+s1[3]+" "+s1[4]+" "+s1[5]+" "+s1[6]+" "+s1[7]+" "+Prior.getX(t+step));
 		    //print the prediction and error
 	       System.out.println("prediction2: "+predict());
 	       System.out.println("distance2:"+gd.objectfunction(predict(), Prior.getX(t+step)));
