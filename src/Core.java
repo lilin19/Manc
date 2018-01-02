@@ -11,6 +11,8 @@ public class Core {
 	static double[] s1 = {0,0,0,0,0,0,0,0};
 	//time
 	static double t=0;
+	//step
+	static double step = 2;
 	//Neuron Network
 	static Network net = new Network();
 	
@@ -29,7 +31,6 @@ public class Core {
 		s1[i] = s1[i+1];
 		}
 		s1[7] = Prior.getX(t);
-
 	}
 	
 	
@@ -59,16 +60,16 @@ public class Core {
 		//work cycle 
 			
 		 //learning work flow
-		for(; t<100000; t=t+2) {
+		for(; t<100000; t=t+step) {
 			iterate();
-			gd.getGradient(net);
+			gd.getGradient(net, gd.objectfunction(Core.predict(), Prior.getX(Core.t + Core.step)));
 			gd.changeParameter(net);
 
 			//print the position array
-			System.out.println("the position: " + s1[0]+" "+s1[1]+" "+s1[2]+" "+s1[3]+" "+s1[4]+" "+s1[5]+" "+s1[6]+" "+s1[7]+" "+Prior.getX(t+2));
+			System.out.println("the position: " + s1[0]+" "+s1[1]+" "+s1[2]+" "+s1[3]+" "+s1[4]+" "+s1[5]+" "+s1[6]+" "+s1[7]+" "+Prior.getX(t+step));
 		    //print the prediction and error
 			System.out.println("prediction: "+predict());
-			System.out.println("distance:"+gd.objectfunction(predict(), Prior.getX(t+2)));
+			System.out.println("distance:"+gd.objectfunction(predict(), Prior.getX(t+step)));
 		}
 
 		
@@ -76,10 +77,10 @@ public class Core {
 		for(t = 1.67886; t<500; t=t+2) {
 			iterate();
 			//print the position array
-		   System.out.println("the position2: " + s1[0]+" "+s1[1]+" "+s1[2]+" "+s1[3]+" "+s1[4]+" "+s1[5]+" "+s1[6]+" "+s1[7]+" "+Prior.getX(t+2));
+		   System.out.println("the position2: " + s1[0]+" "+s1[1]+" "+s1[2]+" "+s1[3]+" "+s1[4]+" "+s1[5]+" "+s1[6]+" "+s1[7]+" "+Prior.getX(t+step));
 		    //print the prediction and error
 	       System.out.println("prediction2: "+predict());
-	       System.out.println("distance2:"+gd.objectfunction(predict(), Prior.getX(t+2)));
+	       System.out.println("distance2:"+gd.objectfunction(predict(), Prior.getX(t+step)));
 		}
 }
 		

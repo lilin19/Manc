@@ -2,12 +2,12 @@
 interface GradientDecent{
 	double objectfunction(double prediction, double prior);
 	void changeParameter(Network net);
-	void getGradient(Network net) ;
+	void getGradient(Network net, double objectfunction) ;
 }
 
 
  class MancGD implements GradientDecent {
-	 
+	
 		//variables of gradient decence
 		static GradientDecent gd = new MancGD(); 
 		static double gradient[][] = {{1,1,1,1,1,1,1,1},{0,1,1,1,1,1,1,1},{0,0,1,1,1,1,1,1},{0,0,0,1,1,1,1,1},{0,0,0,0,1,1,1,1},{0,0,0,0,0,1,1,1},{0,0,0,0,0,0,1,1},{0,0,0,0,0,0,0,1}};
@@ -45,32 +45,32 @@ interface GradientDecent{
 	 * To calculate the gradient by a difference 0.001
 	 * the step and variables can be put into Class GradientDecent
 	 */
-		public void getGradient(Network net) {
+		public void getGradient(Network net, double objectfunction) {
 				//gradient decent
-			       
+			       //net.objectfunction(Core.predict(), Prior.getX(Core.t + Core.step))
 			       //layer1
 			       for(int p=0; p<8; p++) {
 			    	   for(int i=0; i<8-p; i++) {
-					   		double temp = objectfunction(Core.predict(), Prior.getX(Core.t+2));
+					   		double temp = objectfunction;
 					   		net.a[p][p+i]=net.a[p][p+i]+0.001;
-					   		double dedicate = gd.objectfunction(Core.predict(), Prior.getX(Core.t+2));
+					   		double dedicate = objectfunction;
 					   		gradient[p][i] = (dedicate - temp)/0.001;
 					   		net.a[p][p+i]=net.a[p][p+i]-0.001;
 			   		}
 			      }
 			       
 			   		for(int i=0; i<8; i++) {
-				   		double temp = gd.objectfunction(Core.predict(), Prior.getX(Core.t+2));
+				   		double temp = objectfunction;
 				   		net.h[i]=net.h[i]+0.001;
-				   		double dedicate = gd.objectfunction(Core.predict(), Prior.getX(Core.t+2));
+				   		double dedicate = objectfunction;
 				   		gradienth[i] = (dedicate - temp)/0.001;
 				   		net.h[i]=net.h[i]-0.001;
 			   		}
 			   		
 			   		for(int i=0; i<8; i++) {
-				   		double temp = gd.objectfunction(Core.predict(), Prior.getX(Core.t+2));
+				   		double temp = objectfunction;
 				   		net.b[i]=net.b[i]+0.001;
-				   		double dedicate = gd.objectfunction(Core.predict(), Prior.getX(Core.t+2));
+				   		double dedicate = objectfunction;
 				   		gradientb[i] = (dedicate - temp)/0.001;
 				   		net.b[i]=net.b[i]-0.001;
 			   		}
@@ -79,9 +79,9 @@ interface GradientDecent{
 			       //diff
 			       for(int p=0; p<7; p++) {
 			    	   for(int i=0; i<7; i++) {
-			    		   double temp = gd.objectfunction(Core.predict(), Prior.getX(Core.t+2));
+			    		   double temp = objectfunction;
 			    		   net.diffa[p][i]=net.diffa[p][i]+0.001;
-				   			double dedicate = gd.objectfunction(Core.predict(), Prior.getX(Core.t+2));
+				   			double dedicate = objectfunction;
 				   			gradientdiffa[p][i] = (dedicate - temp)/0.001;
 				   			net.diffa[p][i]=net.diffa[p][i]-0.001;
 			   		}
@@ -89,17 +89,17 @@ interface GradientDecent{
 			       
 
 			   		for(int i=0; i<7; i++) {
-				   		double temp = gd.objectfunction(Core.predict(), Prior.getX(Core.t+2));
+				   		double temp = objectfunction;
 				   		net.diffh[i]=net.diffh[i]+0.001;
-				   		double dedicate = gd.objectfunction(Core.predict(), Prior.getX(Core.t+2));
+				   		double dedicate = objectfunction;
 				   		gradientdiffh[i] = (dedicate - temp)/0.001;
 				   		net.diffh[i]=net.diffh[i]-0.001;
 			       }
 			       
 			   		for(int i=0; i<7; i++) {
-				   		double temp = gd.objectfunction(Core.predict(), Prior.getX(Core.t+2));
+				   		double temp = objectfunction;
 				   		net.diffb[i]=net.diffb[i]+0.001;
-				   		double dedicate = gd.objectfunction(Core.predict(), Prior.getX(Core.t+2));
+				   		double dedicate = objectfunction;
 				   		gradientdiffb[i] = (dedicate - temp)/0.001;
 				   		net.diffb[i]=net.diffb[i]-0.001;
 			       }
@@ -108,9 +108,9 @@ interface GradientDecent{
 			       //layer2
 			       for(int p=0; p<8; p++) {
 			   		   for(int i=0; i<8;i++) {
-				   	     	double temp = gd.objectfunction(Core.predict(), Prior.getX(Core.t+2));
+				   	     	double temp = objectfunction;
 				   	     	net.k[p][i]=net.k[p][i]+0.001;
-				   	     	double dedicate = gd.objectfunction(Core.predict(), Prior.getX(Core.t+2));
+				   	     	double dedicate = objectfunction;
 				   	     	gradientk[p][i] = (dedicate - temp)/0.001;
 				   	     	net.k[p][i]=net.k[p][i]-0.001;
 			   		}
@@ -118,18 +118,18 @@ interface GradientDecent{
 			   		
 
 			   		for(int i=0; i<8; i++) {
-				   		double temp = gd.objectfunction(Core.predict(), Prior.getX(Core.t+2));
+				   		double temp = objectfunction;
 				   		net.o[i]=net.o[i]+0.001;
-				   		double dedicate = gd.objectfunction(Core.predict(), Prior.getX(Core.t+2));
+				   		double dedicate = objectfunction;
 				   		gradiento[i] = (dedicate - temp)/0.001;
 				   		net.o[i]=net.o[i]-0.001;
 			   		}
 			   		
 			   		
 			   		for(int i=0; i<8; i++) {
-				   		double temp = gd.objectfunction(Core.predict(), Prior.getX(Core.t+2));
+				   		double temp = objectfunction;
 				   		net.p[i]=net.p[i]+0.001;
-				   		double dedicate = gd.objectfunction(Core.predict(), Prior.getX(Core.t+2));
+				   		double dedicate = objectfunction;
 				   		gradientp[i] = (dedicate - temp)/0.001;
 				   		net.p[i]=net.p[i]-0.001;
 			   		}
@@ -139,9 +139,9 @@ interface GradientDecent{
 				       //diff2
 				       for(int p=0; p<3; p++) {
 				    	   for(int i=0; i<7;i++) {
-				    		   double temp = gd.objectfunction(Core.predict(), Prior.getX(Core.t+2));
+				    		   double temp = objectfunction;
 				    		   net.diff2a[p][i]=net.diff2a[p][i]+0.001;
-				    		   double dedicate = gd.objectfunction(Core.predict(), Prior.getX(Core.t+2));
+				    		   double dedicate = objectfunction;
 					   			gradientdiff2a[p][i] = (dedicate - temp)/0.001;
 					   			net.diff2a[p][i]=net.diff2a[p][i]-0.001;
 				   		}
@@ -149,17 +149,17 @@ interface GradientDecent{
 				       
 
 				   		for(int i=0; i<3;i++) {
-					   		double temp = gd.objectfunction(Core.predict(), Prior.getX(Core.t+2));
+					   		double temp = objectfunction;
 					   		net.diff2h[i]=net.diff2h[i]+0.001;
-					   		double dedicate = gd.objectfunction(Core.predict(), Prior.getX(Core.t+2));
+					   		double dedicate = objectfunction;
 					   		gradientdiff2h[i] = (dedicate - temp)/0.001;
 					   		net.diff2h[i]=net.diff2h[i]-0.001;
 				       }
 				       
 				   		for(int i=0; i<3;i++) {
-					   		double temp = gd.objectfunction(Core.predict(), Prior.getX(Core.t+2));
+					   		double temp = objectfunction;
 					   		net.diff2b[i]=net.diff2b[i]+0.001;
-					   		double dedicate = gd.objectfunction(Core.predict(), Prior.getX(Core.t+2));
+					   		double dedicate = objectfunction;
 					   		gradientdiff2b[i] = (dedicate - temp)/0.001;
 					   		net.diff2b[i]=net.diff2b[i]-0.001;
 				       }
@@ -168,9 +168,9 @@ interface GradientDecent{
 			   		// layer3
 					    for(int p=0; p<4; p++) {
 						    for(int i=0; i<11;i++) {
-							   	double temp = gd.objectfunction(Core.predict(), Prior.getX(Core.t+2));
+							   	double temp = objectfunction;
 							   	net.outa[p][i]=net.outa[p][i]+0.001;
-							 	double dedicate = gd.objectfunction(Core.predict(), Prior.getX(Core.t+2));
+							 	double dedicate = objectfunction;
 							   	gradientouta[p][i] = (dedicate - temp)/0.001;
 							   	net.outa[p][i]=net.outa[p][i]-0.001;
 						   		}
@@ -178,18 +178,18 @@ interface GradientDecent{
 						       
 
 						for(int i=0; i<4;i++) {
-							double temp = gd.objectfunction(Core.predict(), Prior.getX(Core.t+2));
+							double temp = objectfunction;
 							net.outk[i]=net.outk[i]+0.001;
-							double dedicate = gd.objectfunction(Core.predict(), Prior.getX(Core.t+2));
+							double dedicate = objectfunction;
 							gradientoutk[i] = (dedicate - temp)/0.001;
 							net.outk[i]=net.outk[i]-0.001;
 						       }
 						
 						
 						for(int i=0; i<4;i++) {
-							double temp = gd.objectfunction(Core.predict(), Prior.getX(Core.t+2));
+							double temp = objectfunction;
 							net.outb[i]=net.outb[i]+0.001;
-							double dedicate = gd.objectfunction(Core.predict(), Prior.getX(Core.t+2));
+							double dedicate = objectfunction;
 							gradientoutb[i] = (dedicate - temp)/0.001;
 							net.outb[i]=net.outb[i]-0.001;
 						       }
@@ -198,25 +198,25 @@ interface GradientDecent{
 			   		
 							 
 						for(int i=0; i<4;i++) {
-							double temp = gd.objectfunction(Core.predict(), Prior.getX(Core.t+2));
+							double temp = objectfunction;
 							net.layer4a[i]=net.layer4a[i]+0.001;
-							double dedicate = gd.objectfunction(Core.predict(), Prior.getX(Core.t+2));
+							double dedicate = objectfunction;
 							gradientlayer4a[i] = (dedicate - temp)/0.001;
 						    net.layer4a[i]=net.layer4a[i]-0.001;
 								   			}
 								       
 								       
 
-					    double temp = gd.objectfunction(Core.predict(), Prior.getX(Core.t+2));
+					    double temp = objectfunction;
 						net.layer4k=net.layer4k+0.001;
-						double dedicate = gd.objectfunction(Core.predict(), Prior.getX(Core.t+2));
+						double dedicate = objectfunction;
 						gradientlayer4k = (dedicate - temp)/0.001;
 						net.layer4k=net.layer4k-0.001;
 								       
 								       
-						temp = gd.objectfunction(Core.predict(), Prior.getX(Core.t+2));
+						temp = objectfunction;
 						net.layer4b=net.layer4b+0.001;
-						dedicate = gd.objectfunction(Core.predict(), Prior.getX(Core.t+2));
+						dedicate = objectfunction;
 						gradientlayer4b = (dedicate - temp)/0.001;
 						net.layer4b=net.layer4b-0.001;
 			}
@@ -309,12 +309,4 @@ interface GradientDecent{
 		   		net.layer4b = net.layer4b-gradientlayer4b*0.001;
 		   		
 		}
-		
-	
-
-
-
-	
-	
-	
 }

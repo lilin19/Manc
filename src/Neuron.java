@@ -35,8 +35,4 @@ class Hexlinear implements Neuron{
 	return sum;
 
 }
-
-	
-
-	
 }
